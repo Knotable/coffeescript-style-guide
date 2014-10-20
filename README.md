@@ -59,16 +59,16 @@ Limit all lines to a maximum of 79 characters.
 <a name="blank_lines"/>
 ### Blank Lines
 
-Separate top-level function and class definitions with a single blank line.
+Separate top-level function and class definitions with 3 blank lines.
 
-Separate method definitions inside of a class with a single blank line.
+Separate method definitions inside of a class with 3 single blank lines. One- or two-liners may be separated by 2 blank lines.
 
 Use a single blank line within the bodies of methods or functions in cases where this improves readability (e.g., for the purpose of delineating logical sections).
 
 <a name="trailing_whitespace"/>
 ### Trailing Whitespace
 
-Do not include trailing whitespace on any lines.
+Do not include trailing whitespace on any lines. Set up your editor to remove trailing whitespaces on lines that you modified (as opposite to "all lines").
 
 <a name="optional_commas"/>
 ### Optional Commas
@@ -230,16 +230,27 @@ Use `CamelCase` (with a leading uppercase character) to name all classes. _(This
 
 _(The **official** CoffeeScript convention is camelcase, because this simplifies interoperability with JavaScript. For more on this decision, see [here][coffeescript-issue-425].)_
 
-For constants, use all uppercase with underscores:
+**Constants**
+All constants should be defined inside classes and passed to `@constants` static member. Constant names should adhere to `CamelCase` (with a leading uppercase charachter) style.
 
 ```coffeescript
-CONSTANT_LIKE_THIS
+class @SignupMethods
+  @constants
+    LoginView: 0
+    Invitation: 1
+    EmailIngest: 2
+    Api: 3
+@SignupMethods = new @SignupMethods
+
 ```
 
-Methods and variables that are intended to be "private" should begin with a leading underscore:
+Methods and variables that are intended to be "private" should be hidden with "[Revealing Module Pattern](https://carldanley.com/js-revealing-module-pattern/)":
 
 ```coffeescript
-_privateMethod: ->
+class PostTopicMethod
+  constructor: ->
+    #public methods
+    return postTopic: @postTopic
 ```
 
 <a name="functions"/>
@@ -438,8 +449,6 @@ If a custom annotation is required, the annotation should be documented in the p
 `and` is preferred over `&&`.
 
 `or` is preferred over `||`.
-
-`is` is preferred over `==`.
 
 `not` is preferred over `!`.
 
