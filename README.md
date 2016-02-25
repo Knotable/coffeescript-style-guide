@@ -466,19 +466,7 @@ Array::slice # Yes
 Array.prototype.slice # No
 ```
 
-Prefer `@property` over `this.property`.
-
-```coffeescript
-return @property # Yes
-return this.property # No
-```
-
-However, avoid the use of **standalone** `@`:
-
-```coffeescript
-return this # Yes
-return @ # No
-```
+Prefer `@` over `this`.
 
 Avoid `return` where not required, unless the explicit return increases clarity.
 
